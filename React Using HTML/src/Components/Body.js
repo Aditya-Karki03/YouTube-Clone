@@ -1,19 +1,33 @@
 import restruants from '../../Restraunts';
 import RestroCards from './RestroCards'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 
-
+//data.cards.card.card.gridElements.infoWithStyle.restaurants
     
 
 const Body=()=>{
-    const[restroList,setRestroList]=useState(restruants);
+    const[restroList,setRestroList]=useState([]);
     const filter=()=>(
         restruants=restruants.filter((restro)=>restro.info.avgRatingString>4.3)
         
     )
+    const apiCall=async()=>{
+        const data=await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.1811818&lng=91.749661&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`);
+        const json=await data.json();
+        setRestroList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        // console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+           // );
+    }
+    useEffect(()=>{
+        apiCall();
+    },[])
+    if(restroList.length===0){
+       return <h1>Loading....</h1>
+    }
     return (
         <div className='restaurants'>
+            
         <button onClick={()=>setRestroList(filter())} style={{height:'40px', margin:'20px'}}>Highly Rated</button>
        
         {
