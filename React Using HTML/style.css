@@ -54,3 +54,13 @@ input[type='text']{
     display: flex;
     flex-wrap: wrap;
 }
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.shimmer{
+    width: 120px;
+    height: 200px;
+    background-color: lightgray;
+}
