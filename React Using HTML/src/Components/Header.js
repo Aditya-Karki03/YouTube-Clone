@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from 'react'
-import { ReactDOM } from "react";
-
+import { Link } from "react-router-dom";
  const Header=()=>{
     
     const[btnName,setBtnName]=useState('Login');
@@ -11,10 +10,10 @@ import { ReactDOM } from "react";
     <img src='./logo.png' alt='Logo'/>
     <div className='links-container'>
         <ul className='links-container'>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Cart</li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About Us</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
+            <li><Link to='/cart'>Cart</Link></li>
             <button onClick={()=>(btnName==='Login'?setBtnName('Log Out'):setBtnName('Login'))}>{btnName}</button>
         </ul>
     </div>
