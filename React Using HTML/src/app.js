@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM  from 'react';
-import {createBrowserRouter,Outlet,Router,RouterProvider} from 'react-router-dom'
+import {createBrowserRouter,Outlet,Router,RouterProvider, useParams} from 'react-router-dom'
 import { createRoot } from 'react-dom/client';
 import Header from './Components/Header.js'
 import Body from './Components/Body.js'
@@ -19,12 +19,15 @@ const root=createRoot(container);
 //Body contains numerous Restaurant cards
  
 
-const AppLayOut=()=>(
-    <div className='main-container'>
+const AppLayOut=()=>{
+    
+    return(
+        <div className='main-container'>
         <Header/>
         <Outlet/>
     </div>
-)
+    )
+}
 const appRoute=createBrowserRouter([
     {
         path:'/',
@@ -44,7 +47,7 @@ const appRoute=createBrowserRouter([
                 element:<Contact/>
             },
             {
-                path:'/restroDetail',
+                path:'/restroDetail/:id',
                 element:<RestroDetails/>
             }
         ]
