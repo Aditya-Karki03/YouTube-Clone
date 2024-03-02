@@ -5,6 +5,7 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ErrorPage from './Components/ErrorPage.jsx'
 import Search from './Components/Search.jsx'
+import Offer from './Components/Offer.jsx'
 
 const router=createBrowserRouter([
   {
@@ -16,8 +17,13 @@ const router=createBrowserRouter([
         path:'/search/:searcId',
         element:<Search/>
       },
-    ]
-  }
+      {
+        path:'offers/:offer',
+        element:<Offer/>
+      }
+    ],
+  },
+ 
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
