@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ErrorPage from './Components/ErrorPage.jsx'
 import Search from './Components/Search.jsx'
 import Offer from './Components/Offer.jsx'
+import MainBody from './Components/MainBody.jsx'
 
 const router=createBrowserRouter([
   {
@@ -14,7 +15,11 @@ const router=createBrowserRouter([
     errorElement:<ErrorPage/>,
     children:[
       {
-        path:'/search/:searcId',
+        path:'',
+        element:<MainBody/>
+      },
+      {
+        path:'search/:searcId',
         element:<Search/>
       },
       {
