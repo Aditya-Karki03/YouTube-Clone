@@ -5,9 +5,11 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import TopRestaurantCard from "./TopRestaurantCard";
 
 export default function MainBody(){
+    
     const[whatsOnYourMind,setWhatsOnYourMind]=useState([]);
     const[topRestro,setTopRestro]=useState([]);
-    // const[onlySixFoods,setOnlySixFoods]=useState([]);
+    // const[itemsToBeDisplayed,setItemsToBeDisplayed]=useState([])
+    
     useEffect(()=>{
         APICallForMainBody()
     },[])
@@ -16,21 +18,24 @@ export default function MainBody(){
         const json=await data.json();
         setWhatsOnYourMind(json.data.cards[0].card.card.imageGridCards.info);
         setTopRestro(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+     
     }
+   
+   
     console.log(topRestro)
-   
-   
+
+ 
 
     return(
-        <div className="w-screen mt-[100px] py-5 flex flex-col justify-center items-center ">
-            <div className="flex justify-between px-6 w-[961px] items-center ">
-                <h2 className="font-bold text-[20px]">Whats on your mind?</h2>
-                <div className="flex gap-2 text-[25px]  ">
+        <div className="w-screen mt-[100px] py-5  flex flex-col justify-center items-center ">
+            <div className="flex justify-between px-6 w-[961px]  items-center ">
+                <h2 className="font-bold text-[20px]">Top restaurant chains in Guwahati</h2>
+                <div className="flex gap-2 text-[25px] py-8  ">
                     <div className="hover:text-OnHoverColor hover:cursor-pointer"><FaArrowCircleLeft   /></div>
                     <div className="hover:text-OnHoverColor hover:cursor-pointer"><FaArrowCircleRight /></div>                 
                 </div>
             </div>
-            <div className="w-[961px] flex justify-center  overflow-hidden border-b border-b-[lightgray]">
+                <div className="w-[961px] flex justify-center  overflow-hidden border-b border-b-[lightgray] py-4">
             {
                 whatsOnYourMind.length==0?<ShimmerForWhatsOnYourMind/>:
                 whatsOnYourMind.map((item)=>{
@@ -40,16 +45,28 @@ export default function MainBody(){
             </div>
             <div className="flex justify-between px-6 w-[961px] items-center ">
                 <h2 className="font-bold text-[20px]">Top restaurant chains in Guwahati</h2>
-                <div className="flex gap-2 text-[25px]  ">
+                <div className="flex gap-2 text-[25px] py-8  ">
                     <div className="hover:text-OnHoverColor hover:cursor-pointer"><FaArrowCircleLeft   /></div>
                     <div className="hover:text-OnHoverColor hover:cursor-pointer"><FaArrowCircleRight /></div>                 
                 </div>
             </div>
+             
+            <div className="w-[961px]  flex flex-wrap justify-center items-center gap-10 overflow-hidden">
             {
-                topRestro.map((restro)=>{
-                    <TopRestaurantCard key={restro.info.id} name={restro.info.name} imageId={restro.info.cloudinaryImageId} rating={restro.info.avgRatingString} time={restro.info.sla.slaString} locality={restro.info.locality} areaName={restro.info.areaName}  />
-                })
+                topRestro.map((restro)=>  <TopRestaurantCard
+                                            key={restro.info.id}
+                                            name={restro.info.name} 
+                                            imageId={restro.info.cloudinaryImageId} 
+                                            rating={restro.info.avgRatingString} 
+                                            time={restro.info.sla.slaString} 
+                                            locality={restro.info.locality} 
+                                            areaName={restro.info.areaName}  
+                                            />
+                )
             }
-        </div>
+            
+       </div>
+    </div>
+       
     )
 }
