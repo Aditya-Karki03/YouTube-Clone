@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import ShimmerForWhatsOnYourMind from "./ShimmerForWhatsOnYourMind";
-import TopRestaurantCard from "./TopRestaurantCard";
+import TopRestaurantCard, {HigherOrderComponentToDisplayOffers} from "./TopRestaurantCard";
 import TitleAndLeftRight from "./TitleAndLeftRight";
-
+import { Link } from "react-router-dom";
 
 export default function MainBody(){
     
@@ -23,7 +23,7 @@ export default function MainBody(){
     }
    
    
-    console.log(restroWithOnlineDelivery)
+    const OffersToBeDisplayed=HigherOrderComponentToDisplayOffers(TopRestaurantCard)
 
  
 
@@ -47,18 +47,41 @@ export default function MainBody(){
              
             <div className="w-[961px]  flex flex-wrap justify-center items-center gap-10 overflow-hidden p-5 border-b border-b-[lightgray]">
             {
-                topRestro&&topRestro.map((restro)=>  <TopRestaurantCard
-                                            key={restro.info.id}
+                topRestro&&topRestro.map((restro)=>  
+                restro.info.aggregatedDiscountInfoV3?
+                <Link to={`/restaurants/${restro.info.id}`} key={restro.info.id}>
+                    <OffersToBeDisplayed
+                                            
                                             heightOfDiv='h-[300px]'
                                             widthOfImg='w-[273px]'
                                             heightOfImage='h-[182px]'
                                             name={restro.info.name} 
+                                            cuisines={restro.info.cuisines.length>3?restro.info.cuisines.slice(0,3):restro.info.cuisines}
+                                            moreCuisines={restro.info.cuisines.length>3?'...':null}
+                                            imageId={restro.info.cloudinaryImageId} 
+                                            rating={restro.info.avgRatingString} 
+                                            time={restro.info.sla.slaString} 
+                                            locality={restro.info.locality} 
+                                            areaName={restro.info.areaName}
+                                            offers={restro.info.aggregatedDiscountInfoV3}   
+                />
+                </Link>
+                :<Link to={restro.info.id} key={restro.info.id}>
+                    <TopRestaurantCard
+                                           
+                                            heightOfDiv='h-[300px]'
+                                            widthOfImg='w-[273px]'
+                                            heightOfImage='h-[182px]'
+                                            name={restro.info.name} 
+                                            cuisines={restro.info.cuisines.length>3?restro.info.cuisines.slice(0,3):restro.info.cuisines}
+                                            moreCuisines={restro.info.cuisines.length>3?'...':null}
                                             imageId={restro.info.cloudinaryImageId} 
                                             rating={restro.info.avgRatingString} 
                                             time={restro.info.sla.slaString} 
                                             locality={restro.info.locality} 
                                             areaName={restro.info.areaName}  
                                             />
+                </Link>
                 )
             }
             
@@ -69,17 +92,36 @@ export default function MainBody(){
                
                 {
                     restroWithOnlineDelivery.map((restro)=>
+                    restro.info.aggregatedDiscountInfoV3?
+                    <OffersToBeDisplayed
+                                                key={restro.info.id}
+                                                heightOfDiv='h-[270px]'
+                                                widthOfImg='w-[223px]'
+                                                heightOfImage='h-[160px]'
+                                                name={restro.info.name} 
+                                                cuisines={restro.info.cuisines.length>3?restro.info.cuisines.slice(0,3):restro.info.cuisines}
+                                                moreCuisines={restro.info.cuisines.length>3?'...':null}
+                                                imageId={restro.info.cloudinaryImageId} 
+                                                rating={restro.info.avgRatingString} 
+                                                time={restro.info.sla.slaString} 
+                                                locality={restro.info.locality} 
+                                                areaName={restro.info.areaName}
+                                                offers={restro.info.aggregatedDiscountInfoV3}   
+                    />:
                         <TopRestaurantCard 
-                        key={restro.info.id}
-                        heightOfDiv='h-[270px]'
-                        widthOfImg='w-[223px]'
-                        heightOfImage='h-[160px]'
-                        name={restro.info.name}
-                        imageId={restro.info.cloudinaryImageId}
-                        rating={restro.info.avgRatingString} 
-                        time={restro.info.sla.slaString} 
-                        locality={restro.info.locality} 
-                        areaName={restro.info.areaName}   
+                                                key={restro.info.id}
+                                                heightOfDiv='h-[270px]'
+                                                widthOfImg='w-[223px]'
+                                                heightOfImage='h-[160px]'
+                                                name={restro.info.name} 
+                                                cuisines={restro.info.cuisines.length>3?restro.info.cuisines.slice(0,3):restro.info.cuisines}
+                                                moreCuisines={restro.info.cuisines.length>3?'...':null}
+                                                imageId={restro.info.cloudinaryImageId} 
+                                                rating={restro.info.avgRatingString} 
+                                                time={restro.info.sla.slaString} 
+                                                locality={restro.info.locality} 
+                                                areaName={restro.info.areaName}
+                                                offers={restro.info.aggregatedDiscountInfoV3}   
                         />
                     )
                 }

@@ -7,24 +7,29 @@ import ErrorPage from './Components/ErrorPage.jsx'
 import Search from './Components/Search.jsx'
 import Offer from './Components/Offer.jsx'
 import MainBody from './Components/MainBody.jsx'
+import RestroMenu from './Components/RestroMenu.jsx'
 
 const router=createBrowserRouter([
   {
     path:'/',
     element:<App/>,
-    errorElement:<ErrorPage/>,
+    // errorElement:<ErrorPage/>,
     children:[
       {
         path:'',
         element:<MainBody/>
       },
       {
-        path:'search/:searcId',
+        path:'search/',
         element:<Search/>
       },
       {
-        path:'offers/:offer',
+        path:'offers/',
         element:<Offer/>
+      },
+      {
+        path:'restaurants/:restroId',
+        element:<RestroMenu/>
       }
     ],
   },

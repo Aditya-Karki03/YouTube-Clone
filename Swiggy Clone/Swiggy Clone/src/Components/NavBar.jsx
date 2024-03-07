@@ -12,7 +12,7 @@ export default function NavBar(){
         <div className="w-screen fixed top-0 left-0 h-24  shadow-md bg-[white] flex justify-around items-center p-4 z-40">
            <Link to='/'> <img src={logo} alt="Logo" className='w-[80px] h-[80px]' /></Link>
             <div className="flex justify-between  w-[600px]">
-                <NavLink to='/search/12'className={({ isActive }) =>
+                <NavLink to='/search'className={({ isActive }) =>
                 isActive ? 'text-OnHoverColor' : 'text-black'
                 }>
                     <div className="flex gap-2 items-center text-[17px] hover:text-OnHoverColor hover:cursor-pointer">

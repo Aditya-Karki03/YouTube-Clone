@@ -1,6 +1,15 @@
 import { MdStarRate } from "react-icons/md";
 
 export default function TopRestaurantCard(props){
+
+
+
+
+    const arrayOfCuisines=props.cuisines;
+    let stringRepresentationOfCuisines=arrayOfCuisines&&arrayOfCuisines.join();
+    if(props.moreCuisines!==null){
+        stringRepresentationOfCuisines=`${stringRepresentationOfCuisines} ${props.moreCuisines}`
+    }
     return(
         // <div className= "hover:cursor-pointer hover:scale-90 transition ease-in-out border-b border-b-[lightgray]">
         <div className={`hover:cursor-pointer hover:scale-90 transition ease-in-out border-b border-b-[lightgray]  ${props.heightOfDiv}`}>
@@ -19,7 +28,7 @@ export default function TopRestaurantCard(props){
                                 <span className="font-medium">{props.rating} . {props.time}</span>
                             </div>
                             <div className="text-[gray] font-normal">
-                                <p>Sweets, {props.locality}</p>
+                                <p>{stringRepresentationOfCuisines}</p>
                                 <p>{props.areaName}</p>
                             </div>
                         </div>
@@ -27,3 +36,22 @@ export default function TopRestaurantCard(props){
                 </div>
     )
 }
+
+//This is higherorder component
+export function HigherOrderComponentToDisplayOffers(TopRestaurantCard) {
+    return  function wrapper (props)  {
+        return (
+            
+                <div className="hover:scale-90  transition ease-in-out">         
+                    <h2 className="z-10 hover:cursor-pointer absolute bg-[black] m-1 p-1 rounded-lg font-bold text-[20px] text-[white]">{props.offers.header} {props.offers.subHeader}</h2>   
+                    <TopRestaurantCard {...props} />
+                    
+                </div>
+            
+        );
+    };
+}
+
+
+
+
