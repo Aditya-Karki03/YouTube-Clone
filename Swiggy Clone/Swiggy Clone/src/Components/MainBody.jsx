@@ -66,7 +66,7 @@ export default function MainBody(){
                                             offers={restro.info.aggregatedDiscountInfoV3}   
                 />
                 </Link>
-                :<Link to={restro.info.id} key={restro.info.id}>
+                :<Link to={`/restaurants/${restro.info.id}`} key={restro.info.id}>
                     <TopRestaurantCard
                                            
                                             heightOfDiv='h-[300px]'
@@ -91,10 +91,12 @@ export default function MainBody(){
             <div className="w-[961px]  flex flex-wrap justify-center items-center gap-10 overflow-hidden">
                
                 {
-                    restroWithOnlineDelivery.map((restro)=>
+                    restroWithOnlineDelivery && restroWithOnlineDelivery.map((restro)=>
                     restro.info.aggregatedDiscountInfoV3?
-                    <OffersToBeDisplayed
-                                                key={restro.info.id}
+                    // restaurants/:restroId
+                    <Link  key={`key={restro.info.id}`} to={`/restaurants/${restro.info.id}`}>
+                        <OffersToBeDisplayed
+                                               
                                                 heightOfDiv='h-[270px]'
                                                 widthOfImg='w-[223px]'
                                                 heightOfImage='h-[160px]'
@@ -107,9 +109,12 @@ export default function MainBody(){
                                                 locality={restro.info.locality} 
                                                 areaName={restro.info.areaName}
                                                 offers={restro.info.aggregatedDiscountInfoV3}   
-                    />:
-                        <TopRestaurantCard 
-                                                key={restro.info.id}
+                    />
+                    </Link>
+                    :
+                        <Link key={restro.info.id} to={`restaurants/${restro.info.id}`}>
+                            <TopRestaurantCard 
+                                                
                                                 heightOfDiv='h-[270px]'
                                                 widthOfImg='w-[223px]'
                                                 heightOfImage='h-[160px]'
@@ -123,6 +128,7 @@ export default function MainBody(){
                                                 areaName={restro.info.areaName}
                                                 offers={restro.info.aggregatedDiscountInfoV3}   
                         />
+                        </Link>
                     )
                 }
             </div>
