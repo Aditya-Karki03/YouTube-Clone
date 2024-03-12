@@ -71,7 +71,7 @@ export default function RestroMenu(){
                         return (
                             <div key={index}   className=" mt-4  py-5 border-b-[10px] border-[#e1e0e0]">
                                 <div className="cursor-pointer" onClick={()=>handleAccordion(index)}>
-                                    <p className="flex justify-between items-center font-bold ">{`${item.card.card.title} (${item.card.card.itemCards.length ||item.card.card.carousel.length})`} {(visibility)?<IoIosArrowDropup />:<IoIosArrowDropdown />}</p>
+                                    <p className="flex justify-between items-center font-bold ">{`${item.card.card.title} (${(item.card.card.itemCards && item.card.card.itemCards.length) ||item.card.card.carousel.length})`} {(visibility)?<IoIosArrowDropup />:<IoIosArrowDropdown />}</p>
                                 </div>
                                {indexValue==index && <FoodItems indexNo={indexValue}  id={restroId} title={item.card.card.title}  recommendedValues={recommended[whichItemClicked]} lengthItem={item.card.card.itemCards ||item.card.card.carousel} />}
                             </div>

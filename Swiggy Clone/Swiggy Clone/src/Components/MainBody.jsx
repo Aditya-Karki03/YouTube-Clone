@@ -94,7 +94,7 @@ export default function MainBody(){
                     restroWithOnlineDelivery && restroWithOnlineDelivery.map((restro)=>
                     restro.info.aggregatedDiscountInfoV3?
                     // restaurants/:restroId
-                    <Link  key={`key={restro.info.id}`} to={`/restaurants/${restro.info.id}`}>
+                    <Link  key={restro.info.id} to={`/restaurants/${restro.info.id}`}>
                         <OffersToBeDisplayed
                                                
                                                 heightOfDiv='h-[270px]'
