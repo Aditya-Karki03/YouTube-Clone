@@ -8,6 +8,8 @@ import Search from './Components/Search.jsx'
 import Offer from './Components/Offer.jsx'
 import MainBody from './Components/MainBody.jsx'
 import RestroMenu from './Components/RestroMenu.jsx'
+import Cart from './Components/Cart.jsx'
+import SignUpAndSignIN from './Components/SignUpAndSignIn.jsx'
 
 const router=createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router=createBrowserRouter([
       {
         path:'restaurants/:restroId',
         element:<RestroMenu/>
+      },
+      {
+        path:'cart/',
+        element:<Cart/>
+      },
+      {
+        path:'signUp/',
+        element:<SignUpAndSignIN/>
       }
     ],
   },

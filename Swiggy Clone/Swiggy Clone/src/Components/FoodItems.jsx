@@ -2,18 +2,22 @@
 import { LuSquareDot } from "react-icons/lu";
 import { useRestroAPI } from "../Utils/useRestroAPI";
 import ShimmerForSearch from "./ShimmerForSearch";
-
+import { useState } from "react";
+import UserContext from "../Utils/Context";
 
 
 
 export default function FoodItems(props){
     const {id, recommendedValues=null} = props;
 
+    const[cartItems,setCartItems]=useState([]);
+    console.log(cartItems)
+
     const{itemCards}=recommendedValues?.card?.card || null;
     const{carousel}=recommendedValues?.card?.card || null;
 
-   if(itemCards)   console.log(itemCards);
-   else if(carousel)   console.log(carousel)
+//    if(itemCards)   console.log(itemCards);
+//    else if(carousel)   console.log(carousel)
 
     const restroInfo=useRestroAPI(id);
     if(!restroInfo) return <ShimmerForSearch/>
@@ -22,13 +26,16 @@ export default function FoodItems(props){
     // function handleAccordion(){
     //     setVisibility(!visibility)
     // }
+    function addItemsToTheCart(){
+        setCartItems(prevCartItems  => [...prevCartItems,'Biryani','Dal Makhni']);
+        // <Cart item={cartItems} />
+    }
     
 
     return(
-        <div className="cursor-pointer">
-            {/* <div className="" onClick={handleAccordion}>
-                <p className="flex justify-between items-center font-bold ">{`${title} (${lengthItem.length})`} {(visibility)?<IoIosArrowDropup />:<IoIosArrowDropdown />}</p>
-            </div> */}
+         <UserContext.Provider value={{cartItems}}>
+            <div className="cursor-pointer">
+            
             <div className="">
                 {
                     
@@ -46,7 +53,7 @@ export default function FoodItems(props){
                                         {/* image */}
                                         <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${(itemCards && item.card.info.imageId)|| carousel && item.dish.info.imageId }`} alt="Food Image" className="w-[125px] h-full rounded-lg" />
                                         
-                                        <button className="absolute font-semibold text-[15px] bg-[white] text-[#60b246] rounded-md w-[100px] h-[30px] left-[50%] bottom-2 translate-x-[-50%]" >ADD</button>
+                                        <button onClick={addItemsToTheCart} className="absolute font-semibold text-[15px] bg-[white] text-[#60b246] rounded-md w-[100px] h-[30px] left-[50%] bottom-2 translate-x-[-50%]" >ADD</button>
                                        
                                 </div>
                             </div>
@@ -57,5 +64,6 @@ export default function FoodItems(props){
                 
             </div>
         </div>
+         </UserContext.Provider>
     )
 }
