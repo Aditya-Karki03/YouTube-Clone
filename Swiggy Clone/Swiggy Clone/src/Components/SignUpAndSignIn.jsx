@@ -9,8 +9,8 @@ export default function SignUpAndSignIN(props){
     const[phoneNo,setPhoneNo]=useState('')
     const[name,setName]=useState('');
     const[email,setEmail]=useState('');
-   
-
+    const[message,setMessage]=useState(null);
+    
     
    function handleCross(){
     setPosition('right-full')
@@ -22,8 +22,12 @@ export default function SignUpAndSignIN(props){
 
    const  handleVerification=(e)=>{
         e.preventDefault();
-        if(login)   emailAndPasswordFormatValidation(phoneNo,name,email)
-        emailAndPasswordFormatValidation(phoneNo,name,email)
+        if(login) setMessage(emailAndPasswordFormatValidation(phoneNo)) 
+        else if(!login) setMessage(emailAndPasswordFormatValidation(phoneNo,name,email));
+
+        if(message) return;
+
+        
    }
 
  
@@ -41,8 +45,9 @@ export default function SignUpAndSignIN(props){
                 <hr className="w-[50px] my-[20px] "/>
                 <form className="flex flex-col gap-3 w-[400px]">
                     {
-                        handleVerification && <p>{handleVerification}</p>
+                        message && <p className="text-[red]">{message}</p>
                     }
+
                     <input type="number" onChange={(e)=>{setPhoneNo(e.target.value)}} className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-[lightgray] h-[40px] p-4 outline-none" placeholder="Phone number"  />
                     {
                         !login &&
@@ -52,7 +57,7 @@ export default function SignUpAndSignIN(props){
                             <p className="my-[10px] cursor-pointer text-[#6fd3f4]">Have a referral code?</p>
                         </>
                     }
-                    <button onSubmit={(e)=>e.preventDefault()} onClick={(e)=>handleVerification(e)} className="bg-OnHoverColor text-[white] h-[40px] font-bold">LOGIN</button>
+                    <button onSubmit={(e)=>e.preventDefault()} onClick={(e)=>handleVerification(e)} className="bg-OnHoverColor text-[white] h-[40px] font-bold">{login?'LOGIN':'SIGNUP'}</button>
                     <p>By clicking on Login, I accept the <span className="hover:cursor-pointer">Terms & Conditions & Privacy Policy</span></p>
                 </form>
             </div>
