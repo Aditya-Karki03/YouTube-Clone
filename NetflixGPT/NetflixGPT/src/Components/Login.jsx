@@ -1,17 +1,21 @@
 import { NetflixLogo } from "../Utils/constants";
 import { useRef, useState } from "react";
 import { validation } from "../Utils/validation";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import { app } from "../Utils/firebase";
+import { getAuth ,updateProfile, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { addUsers } from "../Utils/userSlice";
+import { app } from "../Utils/firebase";
+import { useDispatch } from "react-redux";
+
 
 export default function Login(){
-
+    const navigate=useNavigate();
     const[signIn,setSignIn]=useState(true);
     const[message,setMessage]=useState(null);
     const email=useRef(null);
     const password=useRef(null);
-    const name=useRef(null)
-   
+    const name=useRef(null);
+    const dispatch=useDispatch();
 
     const handleSignUpAndSignIn=()=>{
         setSignIn(!signIn)
@@ -39,15 +43,51 @@ export default function Login(){
               .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user);
+                const displayName=name.current.value || ' ';
+                updateProfile(user, {
+                    displayName: displayName
+                  }).then(() => {
+                    const {uid,email,displayName} = user;
+                
+                dispatch(addUsers({userId:uid,emailId:email,name:displayName}))
+                    // Profile updated!
+                    // ...
+                  }).catch((error) => {
+                    // An error occurred
+                    // ...
+                    setMessage(error);
+                  });
+                
                 // ...
               })
               .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                setMessage(errorCode-errorMessage)
+               setMessage(`${errorCode }-${errorMessage}`)
                 // ..
               });
+        }
+        else if(IsItSignInOrIsItSignOut){
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                
+
+                
+                navigate('/browse');
+
+                // console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode);
+                console.log(errorMessage)
+                setMessage(errorMessage)
+            });
         }
        
     }
