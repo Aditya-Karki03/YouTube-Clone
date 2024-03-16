@@ -1,13 +1,14 @@
 import HeaderAndBg from "./HeaderAndBg"
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useNewMovies } from "../CustomHooks/useNewMovies";
+
 
 export default function Browse(){
     const navigate=useNavigate();
-    function handleSignOut(){
-        
- 
+   useNewMovies();
 
+    function handleSignOut(){
         const auth = getAuth();
         signOut(auth).then(() => {
         // Sign-out successful.
@@ -16,6 +17,8 @@ export default function Browse(){
         });
         navigate('/')
     }
+
+
     return(
         <div className=" flex items-center pr-2 justify-between shadow-[inset_5px_10px_20px_rgba(0,0,0,0.4)]">
             <HeaderAndBg/>

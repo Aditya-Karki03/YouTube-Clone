@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { addUsers } from "../Utils/userSlice";
 import { app } from "../Utils/firebase";
 import { useDispatch } from "react-redux";
+import useAuthStateChange from "../Utils/useAuthStateChang";
 
 
 export default function Login(){
@@ -16,10 +17,13 @@ export default function Login(){
     const password=useRef(null);
     const name=useRef(null);
     const dispatch=useDispatch();
+    const hasSignedIn=useAuthStateChange()
 
     const handleSignUpAndSignIn=()=>{
         setSignIn(!signIn)
     }
+   
+ if(!hasSignedIn)   console.log("You've failed to sign in");
 
     const handleSignInOrSignOutButton=(IsItSignInOrIsItSignOut,e)=>{
         e.preventDefault();
