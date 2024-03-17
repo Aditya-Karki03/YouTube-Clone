@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const listOfNewMovies=createSlice({
-    name:'New Movies',
+    name:'Movies',
     initialState:{
         movies:null
     },

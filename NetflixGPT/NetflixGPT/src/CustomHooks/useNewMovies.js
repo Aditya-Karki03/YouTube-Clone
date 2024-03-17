@@ -14,7 +14,7 @@ export const  useNewMovies=()=>{
         fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
         .then(response => response.json())
         .then(response => dispatch(addMovies(response)))
-        .catch(err => console.error(err));
+        .catch(err => console.log(err));
     }
     useEffect(()=>{
         APICallforNewMovies()
