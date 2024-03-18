@@ -21,8 +21,8 @@ export default function Browse(){
 
 
     return(
-        <div className="w-screen h-screen">
-            <div className=" flex items-center pr-2 justify-between bg-gradient-to-b from-black to-slate-300">
+        <div className=" max-w-screen ">
+            <div className=" z-20 flex items-center pr-2 justify-between fixed w-full bg-opacity-85 bg-[black]">
                 <HeaderAndBg/>
                 <div className="flex gap-2">
                     <img className="h-[50px] " src="https://occ-0-4995-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229" alt=""></img>

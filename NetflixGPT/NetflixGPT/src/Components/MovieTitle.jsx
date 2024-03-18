@@ -4,7 +4,7 @@ import { CiCircleInfo } from "react-icons/ci";
 export default function MovieTitle(props){
     const{title,description}=props;
     return(
-        <div className="w-[400px] px-[50px]">
+        <div className="w-[400px] px-[50px] text-white relative  bg-gradient-to-r from-black h-screen">
             <h1 className=" text-7xl font-[bold]">{title}</h1>
             <p>{description}</p>
             <div className="flex gap-2">
