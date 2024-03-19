@@ -8,7 +8,7 @@ export const useTeaser=(movieId)=>{
     function APICallForVideos(){
         fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options)
         .then(response => response.json())
-        .then(response => {const arrayOfTeaser=response.results.filter((movie)=>movie.name=='Official Teaser');
+        .then(response => {const arrayOfTeaser=response.results.filter((movie)=>movie.name=='Official Trailer');
                             dispatch(addTrailer(arrayOfTeaser))
                            
     })

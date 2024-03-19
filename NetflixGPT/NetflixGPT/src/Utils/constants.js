@@ -7,3 +7,5 @@ export const options={
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMGVkNjYyMTZmMmQxYmNlMTQyNDcwOGJjMmVkMTQ0YiIsInN1YiI6IjY1ZjU2ZWQzYjk3NDQyMDE3ZGZhNmMzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aaW3QMHes9OTWjaC31SMY9WZGqYdGYq1QNpH_IgwgYE'
     }
   };
+
+export const ImgUrl='https://image.tmdb.org/t/p/w400/'
