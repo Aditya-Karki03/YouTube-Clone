@@ -3,14 +3,21 @@ import MovieCard from "./MovieCard";
 
 export default function ListOfMovies(){
     const MoviesList=useSelector(store=>store?.movies?.movies);
+    const topRatedMovies=useSelector(store=>store?.movies?.topRatedMovies);
+    const TrendingMovies=useSelector(store=>store?.movies?.trendingMovies);
+    const recommendedMovies=useSelector(store=>store?.movies?.recommendedMovies)
+    const upComingMovies=useSelector(store=>store?.movies?.upComingMovies)
+
+    if(MoviesList)  console.log(MoviesList.results)
+    
     // console.log(MoviesList);
     return(
         <div className="">
             <MovieCard title={'Now Playing'} allMovies={MoviesList && MoviesList.results}/>
-            <MovieCard title={'Trending'} allMovies={MoviesList && MoviesList.results}/>
-            <MovieCard title={'Recommended'} allMovies={MoviesList && MoviesList.results}/>
-            <MovieCard title={'List'} allMovies={MoviesList && MoviesList.results}/>
-            <MovieCard title={'Upcoming'} allMovies={MoviesList && MoviesList.results}/>
+            <MovieCard title={'Top Rated'} allMovies={topRatedMovies && topRatedMovies.results}/>
+            <MovieCard title={'Trending'} allMovies={TrendingMovies && TrendingMovies.results}/>
+            <MovieCard title={'Recommended Movies'} allMovies={recommendedMovies && recommendedMovies.results}/>
+            <MovieCard title={'Upcoming'} allMovies={upComingMovies && upComingMovies.results}/>
 
         </div>
     )

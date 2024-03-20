@@ -4,11 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { useNewMovies } from "../CustomHooks/useNewMovies";
 import TrailerContainer from "./TrailerContainer";
 import ListOfMovies from "./ListOfMovies";
-
+import { useTopRated } from "../CustomHooks/useTopRated";
+import { useTrendingMovies } from "../CustomHooks/useTrendingMovies";
+import { useRecommended } from "../CustomHooks/useRecommended";
+import { useUpComingMovies } from "../CustomHooks/useUpComingMovies";
 
 export default function Browse(){
     const navigate=useNavigate();
    useNewMovies();
+   useTopRated();
+   useTrendingMovies();
+   useRecommended();
+   useUpComingMovies();
 
     function handleSignOut(){
         const auth = getAuth();
