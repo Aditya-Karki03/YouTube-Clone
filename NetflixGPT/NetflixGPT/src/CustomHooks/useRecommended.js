@@ -4,10 +4,13 @@ import { useDispatch } from "react-redux";
 import { recommendedMovies } from "../Utils/newMovieSlice";
 
 
+
 export const useRecommended=()=>{
+    
     const dispatch=useDispatch()
+    // !selector&&
     useEffect(()=>{
-        APICallForRecommended();
+       APICallForRecommended();
     },[])
 
     function APICallForRecommended(){

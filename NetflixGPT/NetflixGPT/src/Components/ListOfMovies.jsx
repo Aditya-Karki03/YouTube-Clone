@@ -12,8 +12,8 @@ export default function ListOfMovies(){
     
     // console.log(MoviesList);
     return(
-        <div className="">
-            <MovieCard title={'Now Playing'} allMovies={MoviesList && MoviesList.results}/>
+        <div className="px-5  pb-14">
+            <MovieCard title={'Now Playing'}  allMovies={MoviesList && MoviesList.results}/>
             <MovieCard title={'Top Rated'} allMovies={topRatedMovies && topRatedMovies.results}/>
             <MovieCard title={'Trending'} allMovies={TrendingMovies && TrendingMovies.results}/>
             <MovieCard title={'Recommended Movies'} allMovies={recommendedMovies && recommendedMovies.results}/>
