@@ -4,7 +4,10 @@ import store from "./Utils/AppStore";
 import { Provider } from "react-redux";
 import Login from "./Components/Login";
 import Browse from "./Components/Browse";
+
 import { RouterProvider } from "react-router-dom";
+import ViewTrailer from "./Components/ViewTrailer";
+import TrailerError from "./Components/TrailerError";
 
 
 
@@ -17,7 +20,12 @@ function App() {
     },
     {
       path:'/browse',
-      element:<Browse/>
+      element:<Browse/>,
+    },
+    {
+      path:'/viewTrailer/:id',
+      element:<ViewTrailer/>,
+      errorElement:<TrailerError/>
     }
   ])
 

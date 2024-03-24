@@ -24,6 +24,7 @@ export default function Browse(){
    useUpComingMovies();
    const GPTSearchEnabled=useSelector(store=>store?.search?.search)
    
+   
 
 
     function handleSignOut(){
@@ -62,7 +63,7 @@ function handleGPTSearch(){
                    <div className="" >
                         <TrailerContainer/>
                     </div>
-                    <div className="bg-[black] border  border-orange-300 -mt-[480px] md:-mt-[380px] xl:-mt-[280px] 2xl:mt-0  bg-transparent">
+                    <div className="bg-[black] border  -mt-[480px] md:-mt-[380px] xl:-mt-[280px] 2xl:mt-0  bg-transparent">
                         <ListOfMovies/>
                     </div> 
                 </>

@@ -8,9 +8,6 @@ export default function ListOfMovies(){
     const recommendedMovies=useSelector(store=>store?.movies?.recommendedMovies)
     const upComingMovies=useSelector(store=>store?.movies?.upComingMovies)
 
-    if(MoviesList)  console.log(MoviesList.results)
-    
-    // console.log(MoviesList);
     return(
         <div className="px-5  pb-14">
             <MovieCard title={'Now Playing'}  allMovies={MoviesList && MoviesList.results}/>
