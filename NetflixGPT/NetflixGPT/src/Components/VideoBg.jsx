@@ -5,6 +5,7 @@ import TrailerError from "./TrailerError";
 import { useSelector } from "react-redux";
 import { useTeaser } from "../CustomHooks/useTeaser";
 import { useNavigate } from "react-router-dom";
+import ShimmerUIforVideo from "./ShimmerUIforVideo";
 
 export default function VideoBg({movieId=0,title='',description='',urlIdentifierToUsePlayAndMoreInfoBtn=''}){
    useTeaser(movieId);
@@ -31,6 +32,7 @@ export default function VideoBg({movieId=0,title='',description='',urlIdentifier
     }
 
 
+    if(!trailerVideo)   return <ShimmerUIforVideo/>
    
 
     return(
@@ -50,7 +52,7 @@ export default function VideoBg({movieId=0,title='',description='',urlIdentifier
                     </div>}
                 </div>
             </div>
-            {showMoreInfo&& <div className="h-screen w-full flex flex-col justify-center items-center z-[100] fixed opacity-80 bg-black">
+            {showMoreInfo&& <div className="h-screen  w-full flex flex-col justify-center items-center z-[100] fixed opacity-80 bg-black">
                     <p className="text-white   ">{description}</p>
                     <button onClick={showMoreInfoInModal} className="bg-white w-[50px] h-[30px] ">Close</button>
             </div> }

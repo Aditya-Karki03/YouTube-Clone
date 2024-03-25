@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
+import ShimmerForMovieCard from "./ShimmerForMovieCard";
 
 export default function ListOfMovies(){
     const MoviesList=useSelector(store=>store?.movies?.movies);
@@ -7,7 +8,7 @@ export default function ListOfMovies(){
     const TrendingMovies=useSelector(store=>store?.movies?.trendingMovies);
     const recommendedMovies=useSelector(store=>store?.movies?.recommendedMovies)
     const upComingMovies=useSelector(store=>store?.movies?.upComingMovies)
-
+    if(!MoviesList || !topRatedMovies || !TrendingMovies || !recommendedMovies || !upComingMovies)  return <ShimmerForMovieCard/>
     return(
         <div className="px-5  pb-14">
             <MovieCard title={'Now Playing'}  allMovies={MoviesList && MoviesList.results}/>
