@@ -2,8 +2,20 @@ import { Link } from "react-router-dom"
 import { ImgUrl } from "../Utils/constants"
 import ShimmerForMovieCard from "./ShimmerForMovieCard"
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import '../index.css'
+
 export default function MovieCard({title,allMovies}){
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      };
 
     if(!allMovies) <ShimmerForMovieCard/>
 
@@ -11,14 +23,15 @@ export default function MovieCard({title,allMovies}){
         <div className="flex flex-col   overflow-x-auto my-9">
             <h1 className="text-white  px-5 font-semibold text-[20px]">{title}</h1>
             
-                <div className="flex relative  gap-5 h-[340px] z-10 transition-all mt-7 ">
-                    {/* <button  className="text-white text-[20px] hover:text-[30px] transition-all hover:opacity-80  w-9 h-full opacity-60 bg-black left-0 "><FaChevronLeft /></button> */}
-                    
+            {/* <div className="flex relative  gap-5 h-[340px] z-10 transition-all mt-7 ">                 */}
+            <div className="  px-[40px] h-[370px]  ">   
+            <Slider {...settings}>
                     {
                     allMovies && allMovies.map(movie=>{
                             return(
-                                <Link to={`/viewTrailer/${movie.id}`} key={movie.id}>
-                                    <div  className="w-[250px] cursor-pointer h-[300px] group hover:scale-110  hover:opacity-100 transition-all duration-75 flex-shrink-0 ">
+                               
+                                <Link key={movie.id} to={`/viewTrailer/${movie.id}`} >
+                                    <div  className="w-[250px] flex flex-col items-center justify-center cursor-pointer h-[300px] group hover:scale-110  hover:opacity-100 transition-all duration-75 flex-shrink-0 ">
                                         <div className="">
                                             <img  className={`w-60   h-48 rounded-lg `} src={`${ImgUrl}${movie.backdrop_path||movie.poster_path}`} alt="Image Of the Movie" />
                                         </div>                                    
@@ -28,12 +41,14 @@ export default function MovieCard({title,allMovies}){
                                         </div>
                                     </div>
                                 </Link>
+                               
                             )
                         })
                     }
-                    {/* <button onClick={showNextImage}  className="text-white text-[20px] hover:text-[30px] transition-all hover:opacity-80 absolute w-9 h-full opacity-60 bg-black right-0"><FaChevronRight /></button> */}
-                </div>
-           
-        </div>
+                   </Slider>
+                   </div>
+                  {/* </div> */}
+                  </div>
+        
     )
-}//onMouseOut={removeAdditionalInfo} onMouseOver={additionalInfo}
+} 

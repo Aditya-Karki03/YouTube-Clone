@@ -10,7 +10,7 @@ export default function ListOfMovies(){
     const upComingMovies=useSelector(store=>store?.movies?.upComingMovies)
     if(!MoviesList || !topRatedMovies || !TrendingMovies || !recommendedMovies || !upComingMovies)  return <ShimmerForMovieCard/>
     return(
-        <div className="px-5  pb-14">
+        <div className="px-5 pb-14">
             <MovieCard title={'Now Playing'}  allMovies={MoviesList && MoviesList.results}/>
             <MovieCard title={'Top Rated'} allMovies={topRatedMovies && topRatedMovies.results}/>
             <MovieCard title={'Trending'} allMovies={TrendingMovies && TrendingMovies.results}/>

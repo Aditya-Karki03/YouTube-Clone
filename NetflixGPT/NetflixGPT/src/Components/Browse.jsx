@@ -63,7 +63,7 @@ function handleGPTSearch(){
                    <div className="" >
                         <TrailerContainer/>
                     </div>
-                    <div className="bg-[black]   -mt-[480px] md:-mt-[380px] xl:-mt-[280px] 2xl:mt-0  bg-transparent">
+                    <div className="bg-transparent  -mt-[480px] md:-mt-[380px] xl:-mt-[280px] 2xl:mt-0  ">
                         <ListOfMovies/>
                     </div> 
                 </>
