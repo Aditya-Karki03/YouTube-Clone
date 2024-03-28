@@ -14,7 +14,33 @@ export default function MovieCard({title,allMovies}){
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToScroll: 3,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
       };
 
     if(!allMovies) <ShimmerForMovieCard/>
@@ -24,7 +50,7 @@ export default function MovieCard({title,allMovies}){
             <h1 className="text-white  px-5 font-semibold text-[20px]">{title}</h1>
             
             {/* <div className="flex relative  gap-5 h-[340px] z-10 transition-all mt-7 ">                 */}
-            <div className="  px-[40px] h-[370px]  ">   
+            <div className="  px-[30px] h-[370px]  ">   
             <Slider {...settings}>
                     {
                     allMovies && allMovies.map(movie=>{

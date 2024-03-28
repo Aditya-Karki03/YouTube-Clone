@@ -1,36 +1,21 @@
 export default function ShimmerForMovieCard(){
     return(
-        <div  className="w-[250px] flex cursor-pointer h-[300px] bg-[lightgray] group hover:scale-110  hover:opacity-100 transition-all duration-75 flex-shrink-0 ">
-            <div className="w-60 bg-[gray]  h-48 rounded-lg">
-            </div>                                    
-            <div className="text-white pr-1 w-full -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-3">
-                <p className="font-semibold text-wrap bg-gray -z-10  text-left"></p>
-                <p className="w-full flex bg-gray  "></p>
-            </div>
-            <div className="w-60 bg-[gray]  h-48 rounded-lg">
-            </div>                                    
-            <div className="text-white pr-1 w-full -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-3">
-                <p className="font-semibold text-wrap bg-gray -z-10  text-left"></p>
-                <p className="w-full flex bg-gray  "></p>
-            </div>
-            <div className="w-60 bg-[gray]  h-48 rounded-lg">
-            </div>                                    
-            <div className="text-white pr-1 w-full -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-3">
-                <p className="font-semibold text-wrap bg-gray -z-10  text-left"></p>
-                <p className="w-full flex bg-gray  "></p>
-            </div>
-            <div className="w-60 bg-[gray]  h-48 rounded-lg">
-            </div>                                    
-            <div className="text-white pr-1 w-full -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-3">
-                <p className="font-semibold text-wrap bg-gray -z-10  text-left"></p>
-                <p className="w-full flex bg-gray  "></p>
-            </div>
-            <div className="w-60 bg-[gray]  h-48 rounded-lg">
-            </div>                                    
-            <div className="text-white pr-1 w-full -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-3">
-                <p className="font-semibold text-wrap bg-gray -z-10  text-left"></p>
-                <p className="w-full flex bg-gray  "></p>
-            </div>
+        <div className=" w-[95vw] px-10 mt-6 flex flex-col items-center gap-[30px] top-[30%] bg-[black] opacity-90 cursor-pointer ">
+        <div className="flex gap-[30px] mt-[70px] justify-center">
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer  hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
         </div>
+        <div className="flex gap-[30px] justify-center">
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+        </div>
+        <div className="flex gap-[30px] justify-center">
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+            <div className="w-60   h-48 rounded-lg bg-[gray] flex flex-col items-center justify-center cursor-pointer   hover:scale-110   transition-all duration-75 flex-shrink-0"></div>
+        </div>
+    </div>
     )
 }

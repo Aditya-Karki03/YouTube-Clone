@@ -2,11 +2,16 @@ import { NetflixLogo } from "../Utils/constants";
 import { useRef, useState } from "react";
 import { validation } from "../Utils/validation";
 import { getAuth ,updateProfile, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
 import { addUsers } from "../Utils/userSlice";
 import { app } from "../Utils/firebase";
 import { useDispatch } from "react-redux";
 import useAuthStateChange from "../Utils/useAuthStateChang";
+// import { useParams } from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Login(){
@@ -17,16 +22,25 @@ export default function Login(){
     const password=useRef(null);
     const name=useRef(null);
     const dispatch=useDispatch();
-    const hasSignedIn=useAuthStateChange()
+    const hasSignedIn=useAuthStateChange();
+
+  
+   
+   
+
 
     const handleSignUpAndSignIn=()=>{
         setSignIn(!signIn)
+        
     }
+
+    
    
  if(!hasSignedIn)   console.log("You've failed to sign in");
 
     const handleSignInOrSignOutButton=(IsItSignInOrIsItSignOut,e)=>{
         e.preventDefault();
+        
         //Logic for whether the format of email password and the name is correct or not    
         if (IsItSignInOrIsItSignOut){
             setMessage(validation(email.current.value,password.current.value));
@@ -46,6 +60,9 @@ export default function Login(){
             createUserWithEmailAndPassword(auth, email.current.value,password.current.value,name.current.value)
               .then((userCredential) => {
                 // Signed up 
+                //✅ Signed Up Successfully, Please move to login page
+                
+                toast('✅ Signed Up Successfully, Please move to login page')
                 const user = userCredential.user;
                 const displayName=name.current.value || ' ';
                 updateProfile(user, {
@@ -56,6 +73,7 @@ export default function Login(){
                 dispatch(addUsers({userId:uid,emailId:email,name:displayName}))
                     // Profile updated!
                     // ...
+                    
                   }).catch((error) => {
                     // An error occurred
                     // ...
@@ -78,7 +96,7 @@ export default function Login(){
                 // Signed in 
                 const user = userCredential.user;
                 
-
+                toast("Great you've Signed In")
                 
                 navigate('/browse');
 
@@ -109,12 +127,25 @@ export default function Login(){
                         <input ref={password} type="password" placeholder='Password' autoComplete="current-password" className="h-[40px] outline-none mt-1 px-4 bg-[#474747e1]"/>
                         <button  onSubmit={(e)=>e.preventDefault()} onClick={(e)=>{handleSignInOrSignOutButton(signIn,e)}} className="mt-7 bg-red-500 h-[40px] rounded-md font-medium hover:bg-red-600">{signIn?'Sign In':'Sign Up'}</button>
                     </form>
+                    
                     <div className="px-10 flex justify-between text-[lightgray] mt-4">
                         <p>{signIn?'New to Netflix?':'Already registered'} <span className="text-[white] cursor-pointer font-medium" onClick={handleSignUpAndSignIn}>{signIn?'Sign up now':'Sign In'}</span> </p>
                     </div>
                 </div>
             </div>
-            
+            <ToastContainer
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                            transition: Bounce
+                            />
         </div>
     )
 }
