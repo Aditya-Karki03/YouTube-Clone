@@ -1,13 +1,17 @@
+import React, { Suspense } from "react";
+
 import { createBrowserRouter } from "react-router-dom";
 // import Body from "./Components/Body";
 import store from "./Utils/AppStore";
 import { Provider } from "react-redux";
 import Login from "./Components/Login";
-import Browse from "./Components/Browse";
+// import Browse from "./Components/Browse";
+const Browse=React.lazy(()=>import("./Components/Browse"));
 
 import { RouterProvider } from "react-router-dom";
 import ViewTrailer from "./Components/ViewTrailer";
 import TrailerError from "./Components/TrailerError";
+import ShimmerUIforVideo from "./Components/ShimmerUIforVideo";
 
 
 
@@ -20,7 +24,9 @@ function App() {
     },
     {
       path:'/browse',
-      element:<Browse/>,
+      element:<Suspense fallback={<ShimmerUIforVideo/>}>
+        <Browse/>
+      </Suspense>
     },
     {
       path:'/viewTrailer/:id',
@@ -32,7 +38,6 @@ function App() {
   return (
     <Provider store={store}>
       <div>
-        {/* <Body/> */}
         <RouterProvider router={AppRouter} />
       </div>
     </Provider>
