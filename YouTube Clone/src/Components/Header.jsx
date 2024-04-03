@@ -5,14 +5,22 @@ import { AiFillAudio } from "react-icons/ai";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { showSidebar } from "../Store/SidebarSlice";
 
 
 
 export default function Header(){
+    const dispatch=useDispatch();
+
+    const handleSidebarClick=()=>{
+        dispatch(showSidebar())
+    }
+
     return(
         <div className="w-screen h-16 flex fixed top-0 left-0 justify-between items-center px-5  shadow-xl ">
             <div className="flex gap-1 items-center">
-                <div className="mr-3 rounded-full  h-[40px] w-[40px] hover:bg-[lightgray] flex justify-center items-center cursor-pointer transition-all">
+                <div onClick={handleSidebarClick} className="mr-3 rounded-full  h-[40px] w-[40px] hover:bg-[lightgray] flex justify-center items-center cursor-pointer transition-all">
                     <RxHamburgerMenu className="text-[25px]  " />
                 </div>
                 <div className="flex items-center gap-4">
