@@ -10,7 +10,7 @@ import { FaUser } from "react-icons/fa";
 
 export default function Header(){
     return(
-        <div className="w-screen h-16 flex fixed  justify-between items-center px-4 shadow-xl ">
+        <div className="w-screen h-16 flex fixed top-0 left-0 justify-between items-center px-5  shadow-xl ">
             <div className="flex gap-1 items-center">
                 <div className="mr-3 rounded-full  h-[40px] w-[40px] hover:bg-[lightgray] flex justify-center items-center cursor-pointer transition-all">
                     <RxHamburgerMenu className="text-[25px]  " />
@@ -21,8 +21,8 @@ export default function Header(){
             </div>
             <div className="flex justify-around items-center  w-1/2 h-[35px]">
                 <div className="w-10/12 h-full flex">
-                    <input type="text" placeholder="Search" className=" pl-4 outline-none border border-[gray] rounded-l-full w-11/12 h-full" />
-                    <button className="px-3 hover:bg-[lightgray] h-[35px] border border-[gray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px]" /></button>
+                    <input type="text" placeholder="Search" className=" pl-4 outline-none border  bg-[lightgray] rounded-l-full w-11/12 h-full" />
+                    <button className="px-3 hover:bg-[lightgray] group  h-[35px] bg-[lightgray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px] text-white group-hover:text-black" /></button>
                 </div>
                 <button className="w-[40px] h-[40px] rounded-full flex justify-center items-center hover:bg-[lightgray] transition-all"><AiFillAudio className="text-[25px]" /></button>
             </div>
