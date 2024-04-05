@@ -18,7 +18,7 @@ export default function Header(){
     }
 
     return(
-        <div className="w-screen h-16 flex fixed top-0 left-0 justify-between items-center px-5  shadow-xl ">
+        <div className="w-screen bg-white z-10 h-16 flex fixed top-0 left-0 justify-between items-center px-5   ">
             <div className="flex gap-1 items-center">
                 <div onClick={handleSidebarClick} className="mr-3 rounded-full  h-[40px] w-[40px] hover:bg-[lightgray] flex justify-center items-center cursor-pointer transition-all">
                     <RxHamburgerMenu className="text-[25px]  " />

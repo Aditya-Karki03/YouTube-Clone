@@ -5,7 +5,7 @@ import { IoCopyOutline } from "react-icons/io5";
 
 export default function Sidebar(){
     return(
-        <div className="mt-16 w-20 z-0 fixed flex flex-col items-center gap-4 pt-6 h-screen ">
+        <div className=" w-20  z-0 fixed flex flex-col items-center gap-4 pt-6 h-screen ">
             <div className="h-16   w-16 flex flex-col justify-around items-center rounded-lg py-2 cursor-pointer hover:bg-[lightgray] transition-all">
                 <TiHome className="text-[25px]" />
                 <span className="text-[10px]">Home</span>
