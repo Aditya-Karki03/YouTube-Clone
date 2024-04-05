@@ -7,6 +7,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { showSidebar } from "../Store/SidebarSlice";
+import { Link } from "react-router-dom";
 
 
 
@@ -23,9 +24,11 @@ export default function Header(){
                 <div onClick={handleSidebarClick} className="mr-3 rounded-full  h-[40px] w-[40px] hover:bg-[lightgray] flex justify-center items-center cursor-pointer transition-all">
                     <RxHamburgerMenu className="text-[25px]  " />
                 </div>
-                <div className="flex items-center gap-4">
-                    <FaYoutube className="text-red-500 text-[30px]" /><span className="font-semibold scale-150 tracking-tighter ">YouTube</span>
-                </div>
+                <Link to='/'>
+                    <div className="flex items-center gap-4">
+                        <FaYoutube className="text-red-500 text-[30px]" /><span className="font-semibold scale-150 tracking-tighter ">YouTube</span>
+                    </div>
+                </Link>
             </div>
             <div className="flex justify-around items-center  w-1/2 h-[35px]">
                 <div className="w-10/12 h-full flex">

@@ -1,6 +1,8 @@
 import { useEffect,useState } from "react";
+import { Link } from "react-router-dom";
 
 import VideoCard from "./VideoCard";
+import CardShimmer from "./Shimmers/CardShimmer";
 
 export default function VideoContainer(){
     const[data,setData]=useState([]);
@@ -15,17 +17,18 @@ export default function VideoContainer(){
         .then(res=>setData(res))
         .catch(err=>alert(err));
     }
-    if(data==[])   return;
+    if(data.length<=0)   return <CardShimmer/>;
     const{items}=data;
    
     return(
         <div className="ml-20 mt-30 pt-4 px-3 flex justify-center  flex-shrink-0 flex-wrap gap-5 z-0 ">
             {
                 items && items.map((item)=>
-                    <VideoCard 
-                        key={item.id}
-                        values={item}
-                    />
+                    <Link to={`/watch/${item.id}`} key={item.id}>
+                        <VideoCard
+                            values={item}
+                        />
+                    </Link>
                 )
             }
             
