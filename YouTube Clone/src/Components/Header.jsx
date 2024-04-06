@@ -1,4 +1,5 @@
 import { RxHamburgerMenu } from "react-icons/rx";
+import { CiSearch } from "react-icons/ci";
 import { FaYoutube } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { AiFillAudio } from "react-icons/ai";
@@ -8,11 +9,36 @@ import { FaUser } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { showSidebar } from "../Store/SidebarSlice";
 import { Link } from "react-router-dom";
+import { useState,useEffect } from "react";
 
 
 
 export default function Header(){
     const dispatch=useDispatch();
+    const[searchInput,setSearchInput]=useState('');
+    const[searchSuggestion,setSearchSuggestion]=useState([])
+    const[showSuggestion,setShowSuggestion]=useState(true);
+
+    useEffect(()=>{
+        
+        const timer=setTimeout(()=>{
+            searchAutoComplete();
+        },200)
+
+        return (()=>{
+            clearTimeout(timer);
+        })
+
+    },[searchInput])
+
+    function searchAutoComplete(){
+        fetch(`http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchInput}`)
+        .then((data)=>data.json())
+        .then((json)=>setSearchSuggestion(json[1]));
+    }
+
+    
+
 
     const handleSidebarClick=()=>{
         dispatch(showSidebar())
@@ -31,8 +57,20 @@ export default function Header(){
                 </Link>
             </div>
             <div className="flex justify-around items-center  w-1/2 h-[35px]">
-                <div className="w-10/12 h-full flex">
-                    <input type="text" placeholder="Search" className=" pl-4 outline-none border  bg-[lightgray] rounded-l-full w-11/12 h-full" />
+                <div  className="w-10/12 h-full flex relative ">
+                    <input onFocus={()=>setShowSuggestion(true)} onBlur={()=>setShowSuggestion(false)} onChange={(e)=>setSearchInput(e.target.value)} type="text" placeholder="Search" className=" pl-4 outline-none border  bg-[lightgray] rounded-l-full w-11/12 h-full" />
+                    {
+                        showSuggestion && <div  className="absolute bg-white top-[40px] w-full border border-gray rounded-lg shadow-lg">
+                        {
+                            searchSuggestion&& searchSuggestion.map((item,index)=>{
+                                return(
+                                    <p key={index} className="p-1 hover:bg-[lightgray] flex gap-2"><CiSearch /> {item}</p>
+                                )
+                            })
+                        }
+                            
+                        </div>
+                    }
                     <button className="px-3 hover:bg-[lightgray] group  h-[35px] bg-[lightgray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px] text-white group-hover:text-black" /></button>
                 </div>
                 <button className="w-[40px] h-[40px] rounded-full flex justify-center items-center hover:bg-[lightgray] transition-all"><AiFillAudio className="text-[25px]" /></button>

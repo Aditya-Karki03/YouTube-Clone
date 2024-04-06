@@ -4,8 +4,7 @@ export default function VideoCard({values}){
     
     const{title,thumbnails,channelTitle}=values.snippet;
     const{statistics}=values;
-    console.log(title,thumbnails,channelTitle,statistics)
-
+    
     return(
         <div className=" z-0 w-80 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-all">
             <img className="rounded-lg" src={`${thumbnails.medium.url}`} alt="Thumbnail" />
