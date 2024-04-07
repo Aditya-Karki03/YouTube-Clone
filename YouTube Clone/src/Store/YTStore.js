@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SidebarSlice from "./SidebarSlice";
+import SearchCacheSlice from "./SearchCacheSlice";
 
 const YtStore=configureStore({
     reducer:{
-        sidebarToggle:SidebarSlice
+        sidebarToggle:SidebarSlice,
+        searchCache:SearchCacheSlice
     }
 });
 

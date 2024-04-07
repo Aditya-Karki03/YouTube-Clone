@@ -6,10 +6,11 @@ import { AiFillAudio } from "react-icons/ai";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showSidebar } from "../Store/SidebarSlice";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
+import { addToCache } from "../Store/SearchCacheSlice";
 
 
 
@@ -18,11 +19,19 @@ export default function Header(){
     const[searchInput,setSearchInput]=useState('');
     const[searchSuggestion,setSearchSuggestion]=useState([])
     const[showSuggestion,setShowSuggestion]=useState(true);
+    const selector=useSelector(store=>store.searchCache);
 
     useEffect(()=>{
         
         const timer=setTimeout(()=>{
-            searchAutoComplete();
+            if(selector[searchInput]){
+                setSearchSuggestion(selector[searchInput]);
+            }
+            else{
+                searchAutoComplete();
+
+            }
+            
         },200)
 
         return (()=>{
@@ -34,7 +43,13 @@ export default function Header(){
     function searchAutoComplete(){
         fetch(`http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchInput}`)
         .then((data)=>data.json())
-        .then((json)=>setSearchSuggestion(json[1]));
+        .then((json)=>{
+            setSearchSuggestion(json[1])
+            return json;
+        })
+        .then(json=>dispatch(addToCache({[searchInput]:json[1]})))
+
+        // dispatch(addToCache({[searchInput]:json[1]}))
     }
 
     
