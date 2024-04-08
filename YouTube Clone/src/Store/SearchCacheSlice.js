@@ -9,7 +9,6 @@ const searchCacheSlice=createSlice({
         addToCache:(state,action)=>{
            
             state=Object.assign(state,action.payload)
-            // state={...action.payload,...state};
         }
     }
 })

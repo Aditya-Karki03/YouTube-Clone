@@ -1,10 +1,15 @@
 import { useLocation, useParams } from "react-router-dom"
 import { FaRegUser } from "react-icons/fa";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { subscribedOrNot } from "../Store/SubscribedSlice";
+import Comments from "./Comments";
 
 export default function VideoDisplay() {
-    const[subscribe,setSubscribe]=useState(false)
+    const[,setSubscribe]=useState(false)
     const[showMore,setShowMore]=useState(false);
+    const dispatch=useDispatch();
+    const selector=useSelector(store=>store.subscribed)
     const params=useParams();
     const{id}=params;
     // console.log(id)
@@ -12,8 +17,25 @@ export default function VideoDisplay() {
     const{title,description,channelTitle}=location.state.itemName.snippet;
     // console.log(snippet)
 
+
     function handleSubscribe(){
-        setSubscribe(!subscribe);
+
+        setSubscribe(prev=> 
+            {
+                const newState=!prev
+                addToStore(newState);
+                return newState;
+            }
+            );
+
+        // addToStore();
+        //in the redux store the boolean property displayed is always opposite to subscribe that is why !subscribe is used
+       
+       
+    }
+
+    function addToStore(newVal){
+        dispatch(subscribedOrNot({[channelTitle]:newVal}))
     }
 
     function handleShowMore(){
@@ -31,14 +53,20 @@ export default function VideoDisplay() {
                             <FaRegUser className="h-[25px] w-[25px]" />
                         </div>
                         <p className="font-semibold">{channelTitle}</p>
-                        <button onClick={handleSubscribe} className="ml-3 border border-black px-3 py-1 rounded-r-full rounded-l-full">{subscribe?'Subscribed ✅':'Subscribe'}</button>
+                        <button onClick={handleSubscribe} className="ml-3 border border-black px-3 py-1 rounded-r-full rounded-l-full">{selector[channelTitle]?'Subscribed ✅':'Subscribe'}</button>
                     </div>
-                    <div className="bg-[lightgray] p-2 rounded-lg ">
+                    <div  className="bg-[lightgray] p-2 rounded-lg ">
                         <p className="">{showMore?description.substring(0):description.substring(0,200).concat('...')} <button className="font-bold " onClick={handleShowMore}>{showMore?'Less':'More'}</button> </p>
+                    </div>
+                    <div className="">
+                        <Comments videoId={id} />
                     </div>
                 </div>
             </div>
-            <div className="w-5/12 border border-red-600"></div>
+            <div className="w-5/12 border border-red-600">
+                <h2 className="font-bold text-[25px]">Suggestions</h2>
+                
+            </div>
         </div>
     )
 }
