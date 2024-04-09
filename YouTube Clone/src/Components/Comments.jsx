@@ -1,24 +1,26 @@
 import { useEffect,useState } from "react"
-import { LiaCommentAltSolid } from "react-icons/lia";
 
-export default function Comments({videoId}){
+
+export default function Comments({videoId,totalComments}){
     const[comments,setComments]=useState([])
 
     useEffect(()=>{
         apiCallForComments();
-    },[])
+        
+    },[videoId])
 
     function apiCallForComments(){
         fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=500&videoId=${videoId}&key=AIzaSyAuqNgaTeE-CKflMbl83cBpF7DYmlC7VAY`)
         .then(res=>res.json())
         .then(json=>setComments(json.items))
+        
     }
     
-    if(comments.length>0)   console.log(comments)
+   
 
     return(
         <div className="flex flex-col gap-2">
-            <h2 className="font-bold text-[25px]">{comments.length} Comments</h2>
+            <h2 className="font-bold text-[25px]">{totalComments} Comments</h2>
             {
                 comments && comments.map(comment=>(
                     <div key={comment.id} className="flex gap-2 p-2 bg-[#efeeee]">

@@ -1,11 +1,14 @@
 import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import VideoCard from "./VideoCard";
 import CardShimmer from "./Shimmers/CardShimmer";
+import { addRecommendedVids } from "../Store/RecommendVidSlice";
 
 export default function VideoContainer(){
     const[data,setData]=useState([]);
+    const dispatch=useDispatch();
 
     useEffect(()=>{
         apiCallForVideoCards();
@@ -18,6 +21,10 @@ export default function VideoContainer(){
         .catch(err=>alert(err));
     }
     if(data.length<=0)   return <CardShimmer/>;
+    else{
+        
+        dispatch(addRecommendedVids(data.items))
+    }
     const{items}=data;
    
     return(

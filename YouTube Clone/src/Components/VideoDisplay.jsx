@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { subscribedOrNot } from "../Store/SubscribedSlice";
 import Comments from "./Comments";
+import Suggestion from "./Suggestions";
 
 export default function VideoDisplay() {
     const[,setSubscribe]=useState(false)
@@ -15,7 +16,13 @@ export default function VideoDisplay() {
     // console.log(id)
     const location=useLocation();
     const{title,description,channelTitle}=location.state.itemName.snippet;
-    // console.log(snippet)
+    const{commentCount}=location.state.itemName.statistics
+
+    console.log(location)
+    
+    
+
+    // console.log(location.state);
 
 
     function handleSubscribe(){
@@ -43,9 +50,9 @@ export default function VideoDisplay() {
     }
     
     return(
-        <div className="px-8 mt-20 border  flex justify-center ">
-            <div className=" aspect-video w-7/12 border  ">
-                <iframe  className="w-full h-full" src={`https://www.youtube.com/embed/${id}?si=3jki0qHFa_ayeGtR`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen='true'></iframe>
+        <div className="px-8 mt-20 border  flex justify-center gap-2 ">
+            <div className="pt-2 aspect-video w-7/12 h-5/6 ">
+                <iframe  className="w-full h-full" src={`https://www.youtube.com/embed/${id}?si=3jki0qHFa_ayeGtR`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                 <div className="flex flex-col gap-2">
                     <p className="font-bold text-[19px] ">{title}</p>
                     <div className="flex items-center gap-2">
@@ -59,13 +66,13 @@ export default function VideoDisplay() {
                         <p className="">{showMore?description.substring(0):description.substring(0,200).concat('...')} <button className="font-bold " onClick={handleShowMore}>{showMore?'Less':'More'}</button> </p>
                     </div>
                     <div className="">
-                        <Comments videoId={id} />
+                        <Comments videoId={id} totalComments={commentCount} />
                     </div>
                 </div>
             </div>
-            <div className="w-5/12 border border-red-600">
-                <h2 className="font-bold text-[25px]">Suggestions</h2>
-                
+            <div className="w-[400px] ">
+                <h2 className="font-bold text-[25px] pl-10">Suggestions</h2>
+                <Suggestion/>
             </div>
         </div>
     )
