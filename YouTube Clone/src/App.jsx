@@ -13,7 +13,6 @@ import { Outlet } from "react-router-dom"
 function App() {
   
 
-
   return (
     <Provider store={YtStore}>
       <div className="">

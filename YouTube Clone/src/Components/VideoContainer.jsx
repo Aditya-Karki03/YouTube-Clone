@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import VideoCard from "./VideoCard";
 import CardShimmer from "./Shimmers/CardShimmer";
 import { addRecommendedVids } from "../Store/RecommendVidSlice";
+import { videoAPI } from "../Constants";
 
 export default function VideoContainer(){
     const[data,setData]=useState([]);
@@ -15,7 +16,8 @@ export default function VideoContainer(){
     },[])
 
     const apiCallForVideoCards=()=>{
-        fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyAuqNgaTeE-CKflMbl83cBpF7DYmlC7VAY`)
+        const apiURL=videoAPI();
+        fetch(apiURL)
         .then((res)=>res.json())
         .then(res=>setData(res))
         .catch(err=>alert(err));

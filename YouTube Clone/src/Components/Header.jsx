@@ -11,6 +11,7 @@ import { showSidebar } from "../Store/SidebarSlice";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { addToCache } from "../Store/SearchCacheSlice";
+import { InputSuggestionAPI } from "../Constants";
 
 
 
@@ -41,7 +42,8 @@ export default function Header(){
     },[searchInput])
 
     function searchAutoComplete(){
-        fetch(`http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchInput}`)
+        const apiURL=InputSuggestionAPI(searchInput)
+        fetch(apiURL)
         .then((data)=>data.json())
         .then((json)=>{
             setSearchSuggestion(json[1])
@@ -52,9 +54,22 @@ export default function Header(){
         // dispatch(addToCache({[searchInput]:json[1]}))
     }
 
+    function handleInputClick(item=searchInput){
+        setSearchInput(item);
+        setShowSuggestion(false)
+    }
+
+    function handleSuggestionsBlur(){
+        let suggestionTimeout=null;
+        if(suggestionTimeout ){
+            clearTimeout(suggestionTimeout );
+        }
+
+         suggestionTimeout =setTimeout(()=>{
+            setShowSuggestion(false)
+        },100)
+    }
     
-
-
     const handleSidebarClick=()=>{
         dispatch(showSidebar())
     }
@@ -73,13 +88,15 @@ export default function Header(){
             </div>
             <div className="flex justify-around items-center  w-1/2 h-[35px]">
                 <div  className="w-10/12 h-full flex relative ">
-                    <input onFocus={()=>setShowSuggestion(true)} onBlur={()=>setShowSuggestion(false)} onChange={(e)=>setSearchInput(e.target.value)} type="text" placeholder="Search" className=" pl-4 outline-none border  bg-[lightgray] rounded-l-full w-11/12 h-full" />
+                    <input value={searchInput} onFocus={()=>setShowSuggestion(true)} onBlur={()=>handleSuggestionsBlur()}  onChange={(e)=>setSearchInput(e.target.value)} type="text" placeholder="Search" className=" pl-4 outline-none border  bg-[lightgray] rounded-l-full w-11/12 h-full" />
                     {
                         showSuggestion && <div  className="absolute bg-white top-[40px] w-full border border-gray rounded-lg shadow-lg">
                         {
                             searchSuggestion&& searchSuggestion.map((item,index)=>{
                                 return(
-                                    <p key={index} className="p-1 hover:bg-[lightgray] flex gap-2"><CiSearch /> {item}</p>
+                                    <Link to={`/searchedItems/${item}`} key={index}>
+                                        <p key={index} onClick={()=>handleInputClick(item) } className="p-1 hover:bg-[lightgray] flex gap-2"><CiSearch /> {item}</p>
+                                        </Link>
                                 )
                             })
                         }

@@ -4,19 +4,9 @@ import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
 
 export default function Suggestion(){
-    // const[suggestion,setSuggestion]=useState([])
-    // useEffect(()=>{
-    //     apiCallForSuggestionVideos();
-    // },[])
-
-    // function apiCallForSuggestionVideos(){
-    //     fetch(`https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&maxResults=50&key=AIzaSyAuqNgaTeE-CKflMbl83cBpF7DYmlC7VAY`)
-    //     .then(res=>res.json())
-    //     .then(json=>setSuggestion(json.items))
-    // }
-
+ 
     const selector=useSelector(store=>store.videoList.arrOfVids);
-    console.log(selector)   
+  
 
 
 

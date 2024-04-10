@@ -1,16 +1,18 @@
 import { useEffect,useState } from "react"
+import { CommentsAPI } from "../Constants";
 
 
 export default function Comments({videoId,totalComments}){
     const[comments,setComments]=useState([])
-
+    
     useEffect(()=>{
         apiCallForComments();
         
     },[videoId])
 
     function apiCallForComments(){
-        fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=500&videoId=${videoId}&key=AIzaSyAuqNgaTeE-CKflMbl83cBpF7DYmlC7VAY`)
+        const apiURL=CommentsAPI(videoId)
+        fetch(apiURL)
         .then(res=>res.json())
         .then(json=>setComments(json.items))
         
