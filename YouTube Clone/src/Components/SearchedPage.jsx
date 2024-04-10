@@ -11,7 +11,6 @@ export default function SearchedPage(){
         apiCallForSearchedItems()
     },[params.id])
 
-    console.log(params.id)
 
     function apiCallForSearchedItems(){
         const apiURL=SearchedItemAPI(params.id)
@@ -21,7 +20,6 @@ export default function SearchedPage(){
     }
     
      if(searchedRes.length==0)   return;
-    console.log(searchedRes)
     return(
         <div className="mt-20 flex justify-center  px-3 w-full">
             

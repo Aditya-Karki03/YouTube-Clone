@@ -13,7 +13,6 @@ export default function VideoDisplay() {
     const selector=useSelector(store=>store.subscribed)
     const params=useParams();
     const{id}=params;
-    // console.log(id)
     const location=useLocation();
     const{title,description,channelTitle}=location.state.itemName.snippet;
 
@@ -24,11 +23,7 @@ export default function VideoDisplay() {
 
     // const{commentCount}=location.state.itemName.statistics
 
-    console.log(location)
     
-    
-
-    // console.log(location.state);
 
 
     function handleSubscribe(){
