@@ -16,7 +16,13 @@ export default function VideoDisplay() {
     // console.log(id)
     const location=useLocation();
     const{title,description,channelTitle}=location.state.itemName.snippet;
-    const{commentCount}=location.state.itemName.statistics
+
+    let CommentCount=null;
+    if(location.state.itemName.statistics){
+        CommentCount=location.state.itemName.statistics.commentCount
+    }
+
+    // const{commentCount}=location.state.itemName.statistics
 
     console.log(location)
     
@@ -66,7 +72,7 @@ export default function VideoDisplay() {
                         <p className="">{showMore?description.substring(0):description.substring(0,200).concat('...')} <button className="font-bold " onClick={handleShowMore}>{showMore?'Less':'More'}</button> </p>
                     </div>
                     <div className="">
-                        <Comments videoId={id} totalComments={commentCount} />
+                        <Comments videoId={id} totalComments={CommentCount&&CommentCount} />
                     </div>
                 </div>
             </div>

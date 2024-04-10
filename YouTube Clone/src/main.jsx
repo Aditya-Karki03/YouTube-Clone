@@ -7,18 +7,24 @@ import VideoDisplay from "./Components/VideoDisplay"
 import VideoContainer from './Components/VideoContainer.jsx'
 import Sidebar from './Components/Sidebar.jsx'
 import SuggestionBtn from './Components/SuggestionBtn.jsx'
+import SearchedPage from './Components/SearchedPage.jsx'
 
 const appRouter=createBrowserRouter([
   {
     path:'/',
     element:<App/>,
-    children:[{
+    children:[
+      {
       path:'/',
       element:<><Sidebar/><SuggestionBtn/><VideoContainer/></>
     },{
       path:'/watch/:id',
       element:<VideoDisplay/>
-    }]
+    },{
+      path:'/searchedItems/:id',
+      element:<><Sidebar/><SearchedPage/></>
+    }
+  ]
   }
 ])
 
