@@ -8,7 +8,7 @@ function SampleNextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black",borderRadius:'50%' }}
+      style={{ ...style, display: "block", background: "black",borderRadius:'50%',paddingTop:'1px' }}
       onClick={onClick}
     />
   );
@@ -19,7 +19,7 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black",borderRadius:'50%' }}
+      style={{ ...style, display: "block", background: "black",borderRadius:'50%',paddingTop:'1px' }}
       onClick={onClick}
     />
   );
@@ -32,13 +32,13 @@ export default function SuggestionBtn(){
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 8,
+        slidesToShow: 6,
         slidesToScroll: 3,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
       };
     return(
-        <div className="z-[8] shadow-xl mt-20 mx-20 py-1 px-9 h-8 sticky top-16  bg-white">
+        <div className="z-[8] shadow-xl mt-20 py-1 px-9 h-8 sticky top-16  bg-white">
             <Slider {...settings}>
                {
                  btnOptions.map((items)=>  <button className="px-2 py-1 transition-all text-[13px] rounded-lg hover:bg-[lightgray] whitespace-nowrap" key={items}>{items}</button>)
