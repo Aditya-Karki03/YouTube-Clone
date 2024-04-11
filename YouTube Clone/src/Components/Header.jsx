@@ -103,7 +103,10 @@ export default function Header(){
                             
                         </div>
                     }
-                    <button className="px-3 hover:bg-[lightgray] group  h-[35px] bg-[lightgray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px] text-white group-hover:text-black" /></button>
+                    <Link to={`/searchedItems/${searchInput}`} >
+                                       <button  className="px-3 hover:bg-[lightgray] group  h-[35px] bg-[lightgray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px] text-white group-hover:text-black" /></button>
+                    </Link>
+                    <button onClick={} className="px-3 hover:bg-[lightgray] group  h-[35px] bg-[lightgray] rounded-r-full transition-all"><IoSearchOutline  className="text-[20px] text-white group-hover:text-black" /></button>
                 </div>
                 <button className="w-[40px] h-[40px] rounded-full flex justify-center items-center hover:bg-[lightgray] transition-all"><AiFillAudio className="text-[25px]" /></button>
             </div>
