@@ -38,7 +38,7 @@ export default function SuggestionBtn(){
         prevArrow: <SamplePrevArrow />
       };
     return(
-        <div className="z-[8] shadow-xl mt-20 py-1 px-15 h-8 sticky top-16  bg-white">
+        <div className="z-[8] shadow-xl mt-20 py-1 px-14 h-8 sticky top-16  bg-white">
             <Slider {...settings}>
                {
                  btnOptions.map((items)=>  <button className="px-2 py-1 transition-all text-[13px] rounded-lg hover:bg-[lightgray] whitespace-nowrap" key={items}>{items}</button>)
